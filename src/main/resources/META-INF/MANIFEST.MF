@@ -1,0 +1,4 @@
+Manifest-Version: 1.0
+Main-Class: com.metait.write.pagenumbers.pdf.pdfpagenumbers.cmdline.PdfP
+ ageNumbersCmdline
+

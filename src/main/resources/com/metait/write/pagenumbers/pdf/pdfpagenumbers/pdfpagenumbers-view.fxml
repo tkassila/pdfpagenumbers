@@ -1,16 +1,126 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.CheckBox?>
+<?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.ToolBar?>
+<?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 
-<?import javafx.scene.control.Button?>
-<VBox alignment="CENTER" spacing="20.0" xmlns:fx="http://javafx.com/fxml"
-      fx:controller="com.metait.write.pagenumbers.pdf.pdfpagenumbers.PdfPageNumberController">
+<VBox alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="727.0" prefWidth="1043.0" spacing="5.0" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1">
   <padding>
-    <Insets bottom="20.0" left="20.0" right="20.0" top="20.0"/>
+    <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
   </padding>
-
-  <Label fx:id="welcomeText"/>
-  <Button text="Hello!" onAction="#onHelloButtonClick"/>
+   <children>
+      <ToolBar maxWidth="1.7976931348623157E308" prefHeight="35.0" prefWidth="1032.0" VBox.vgrow="ALWAYS">
+        <items>
+            <Label text="1." />
+          <Button fx:id="buttonInputFile" mnemonicParsing="false" onAction="#buttonInputFilePressed" text="Open input pdf file" />
+            <Label layoutX="10.0" layoutY="15.0" text="2." />
+            <Button fx:id="buttonOutputDir" layoutX="27.0" layoutY="10.0" mnemonicParsing="false" onAction="#buttonOutputDirPressed" text="Select output directory" />
+            <Label layoutX="170.0" layoutY="15.0" text="3. set out pdf file name" />
+            <Label layoutX="359.0" layoutY="15.0" text="4. set optinally below conversion controls" />
+        </items>
+         <padding>
+            <Insets bottom="5.0" left="5.0" right="15.0" top="5.0" />
+         </padding>
+         <VBox.margin>
+            <Insets />
+         </VBox.margin>
+      </ToolBar>
+      <HBox maxWidth="1.7976931348623157E308" prefHeight="34.0" prefWidth="1023.0" spacing="10.0" VBox.vgrow="ALWAYS">
+         <children>
+            <Label minHeight="16.0" minWidth="48.0" prefHeight="16.0" prefWidth="48.0" text="Input:" />
+            <Label fx:id="labelInputPdf" maxWidth="1.7976931348623157E308" prefHeight="23.0" HBox.hgrow="ALWAYS" />
+         </children>
+         <padding>
+            <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+         </padding>
+      </HBox>
+      <HBox maxWidth="1.7976931348623157E308" prefHeight="42.0" prefWidth="1023.0" spacing="10.0">
+         <children>
+            <Label minHeight="16.0" minWidth="119.0" prefHeight="16.0" prefWidth="119.0" text="Output directory:" />
+            <Label fx:id="labelOutputDir" maxWidth="1.7976931348623157E308" prefHeight="27.0" HBox.hgrow="ALWAYS" />
+         </children>
+         <padding>
+            <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+         </padding>
+      </HBox>
+      <HBox maxWidth="1.7976931348623157E308" prefHeight="0.0" prefWidth="1023.0" spacing="10.0">
+         <children>
+            <Label minHeight="30.0" minWidth="115.0" prefHeight="30.0" prefWidth="124.0" text="Output file name:" />
+            <TextField fx:id="textFieldOutputFile" maxWidth="1.7976931348623157E308" prefHeight="25.0" prefWidth="953.0" HBox.hgrow="ALWAYS" />
+         </children>
+         <padding>
+            <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+         </padding>
+      </HBox>
+      <ToolBar maxWidth="1.7976931348623157E308" prefHeight="31.0" VBox.vgrow="ALWAYS">
+         <items>
+            <CheckBox fx:id="checkBoxNumbering" mnemonicParsing="false" onAction="#checkBoxNumberingPressed" text="Page numbering" />
+            <CheckBox fx:id="checkBoxPrintTime" layoutX="10.0" layoutY="16.0" mnemonicParsing="false" onAction="#checkBoxPrintTimePressed" text="Print date &amp; time" />
+            <CheckBox fx:id="checkBoxPrintExtra" layoutX="145.0" layoutY="16.0" mnemonicParsing="false" onAction="#checkBoxPrintExtraPressed" prefHeight="18.0" prefWidth="129.0" text="Print extra text" />
+         </items>
+         <VBox.margin>
+            <Insets right="15.0" />
+         </VBox.margin>
+         <padding>
+            <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+         </padding>
+      </ToolBar>
+      <HBox fx:id="hBoxNumbering" maxWidth="1.7976931348623157E308" prefHeight="32.0" prefWidth="1034.0" spacing="10.0" VBox.vgrow="ALWAYS">
+         <children>
+            <ComboBox fx:id="comboBoxPageNumbers" minHeight="25.0" minWidth="122.0" prefHeight="25.0" prefWidth="122.0" />
+            <Label minHeight="31.0" minWidth="128.0" prefHeight="31.0" prefWidth="128.0" text="Start page number:" />
+            <TextField fx:id="textFieldStartPage" prefHeight="25.0" prefWidth="45.0" />
+            <Label layoutX="10.0" layoutY="10.0" minHeight="31.0" minWidth="128.0" prefHeight="31.0" prefWidth="128.0" text="End page number:" />
+            <TextField fx:id="textFieldEndPage" layoutX="148.0" layoutY="10.0" prefHeight="25.0" prefWidth="45.0" />
+            <Label layoutX="203.0" layoutY="10.0" minHeight="31.0" minWidth="157.0" prefHeight="31.0" prefWidth="157.0" text="Starting page number:" />
+            <TextField fx:id="textFieldStartPageNumber" layoutX="341.0" layoutY="10.0" prefHeight="25.0" prefWidth="45.0" />
+         </children>
+         <VBox.margin>
+            <Insets />
+         </VBox.margin>
+         <padding>
+            <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+         </padding>
+      </HBox>
+      <HBox fx:id="hBoxPrintTime" maxWidth="1.7976931348623157E308" prefHeight="36.0" prefWidth="1034.0" spacing="10.0">
+         <children>
+            <Label layoutX="142.0" layoutY="10.0" minHeight="26.0" minWidth="108.0" prefHeight="26.0" prefWidth="108.0" text="Print time pos:" />
+            <ComboBox fx:id="comboBoxPrintTime" minHeight="25.0" minWidth="122.0" prefHeight="25.0" prefWidth="122.0" />
+         </children>
+         <padding>
+            <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+         </padding>
+      </HBox>
+      <HBox fx:id="hBoxExtraText" maxWidth="1.7976931348623157E308" prefHeight="36.0" prefWidth="1034.0" spacing="10.0" VBox.vgrow="ALWAYS">
+         <children>
+            <Label layoutX="142.0" layoutY="10.0" minHeight="26.0" minWidth="108.0" prefHeight="26.0" prefWidth="108.0" text="Print extra pos:" />
+            <ComboBox fx:id="comboBoxExtraText" minHeight="25.0" minWidth="122.0" prefHeight="25.0" prefWidth="122.0" />
+            <Label minHeight="26.0" minWidth="108.0" prefHeight="26.0" prefWidth="108.0" text="Print extra text:" />
+            <TextField fx:id="textFiledExtraText" maxWidth="1.7976931348623157E308" prefHeight="27.0" prefWidth="784.0" HBox.hgrow="ALWAYS" />
+         </children>
+         <padding>
+            <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+         </padding>
+      </HBox>
+      <HBox maxWidth="1.7976931348623157E308" prefHeight="36.0" prefWidth="1034.0" spacing="10.0" VBox.vgrow="ALWAYS">
+         <children>
+            <Button fx:id="buttonConvert" maxWidth="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#buttonConvertPressed" prefHeight="25.0" prefWidth="154.0" text="Convert into out pdf" />
+            <Button fx:id="buttonOpenResult" layoutX="20.0" layoutY="20.0" maxWidth="-Infinity" minWidth="154.0" mnemonicParsing="false" onAction="#buttonOpenResultPressed" prefHeight="25.0" prefWidth="154.0" text="Open output pdf" />
+            <Label prefHeight="25.0" prefWidth="180.0" text="Command line -command=" />
+            <Label fx:id="labelCommand" maxWidth="1.7976931348623157E308" prefHeight="30.0" prefWidth="560.0" HBox.hgrow="ALWAYS" />
+         </children>
+         <padding>
+            <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+         </padding>
+      </HBox>
+      <TextArea fx:id="textAreaResult" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="440.0" prefWidth="1034.0" wrapText="true" VBox.vgrow="ALWAYS" />
+      <Label fx:id="labelMsg" maxWidth="1.7976931348623157E308" prefHeight="16.0" prefWidth="1007.0" VBox.vgrow="ALWAYS" />
+   </children>
 </VBox>

@@ -7,12 +7,16 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 
-public class HelloApplication extends Application {
+public class PdfPageNumberApplication extends Application {
+    static boolean bDebug = true;
     @Override
     public void start(Stage stage) throws IOException {
-        FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("hello-view.fxml"));
-        Scene scene = new Scene(fxmlLoader.load(), 320, 240);
-        stage.setTitle("Hello!");
+        PdfPageNumberController controller = new PdfPageNumberController();
+        controller.setState(stage);
+        FXMLLoader fxmlLoader = new FXMLLoader(PdfPageNumberApplication.class.getResource("pdfpagenumbers-view.fxml"));
+        fxmlLoader.setController(controller);
+        Scene scene = new Scene(fxmlLoader.load(), 920, 940);
+        stage.setTitle("Set pdf page margin");
         stage.setScene(scene);
         stage.show();
     }
