@@ -62,6 +62,7 @@ public class PdfPageNumbersCmdline {
         systemErr("  where printtext means string value to printed.");
         systemErr("  where pagenumbers means string value to printed.");
         systemErr("  where printtime_text means string value to printed with printtime_left etc.");
+        systemErr("  where timetextonly means string value is only text, which will printed with printtime_left etc.");
 
         systemErr("  and where values and variables for -command are optional => [].");
         systemExit(1);
