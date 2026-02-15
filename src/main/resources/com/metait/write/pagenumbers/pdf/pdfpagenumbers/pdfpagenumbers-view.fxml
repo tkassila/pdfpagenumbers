@@ -11,7 +11,7 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 
-<VBox alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="727.0" prefWidth="1043.0" spacing="5.0" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1">
+<VBox alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="727.0" prefWidth="1043.0" spacing="5.0" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1">
   <padding>
     <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
   </padding>
@@ -72,27 +72,47 @@
             <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
          </padding>
       </ToolBar>
-      <HBox fx:id="hBoxNumbering" maxWidth="1.7976931348623157E308" prefHeight="32.0" prefWidth="1034.0" spacing="10.0" VBox.vgrow="ALWAYS">
-         <children>
-            <ComboBox fx:id="comboBoxPageNumbers" minHeight="25.0" minWidth="122.0" prefHeight="25.0" prefWidth="122.0" />
-            <Label minHeight="31.0" minWidth="128.0" prefHeight="31.0" prefWidth="128.0" text="Start page number:" />
-            <TextField fx:id="textFieldStartPage" prefHeight="25.0" prefWidth="45.0" />
-            <Label layoutX="10.0" layoutY="10.0" minHeight="31.0" minWidth="128.0" prefHeight="31.0" prefWidth="128.0" text="End page number:" />
-            <TextField fx:id="textFieldEndPage" layoutX="148.0" layoutY="10.0" prefHeight="25.0" prefWidth="45.0" />
-            <Label layoutX="203.0" layoutY="10.0" minHeight="31.0" minWidth="157.0" prefHeight="31.0" prefWidth="157.0" text="Starting page number:" />
-            <TextField fx:id="textFieldStartPageNumber" layoutX="341.0" layoutY="10.0" prefHeight="25.0" prefWidth="45.0" />
-         </children>
+      <VBox fx:id="vboxPage" VBox.vgrow="ALWAYS">
          <VBox.margin>
             <Insets />
          </VBox.margin>
-         <padding>
-            <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
-         </padding>
-      </HBox>
+         <children>
+            <HBox fx:id="hBoxNumbering" maxWidth="1.7976931348623157E308" prefHeight="32.0" prefWidth="1034.0" spacing="10.0">
+               <children>
+                  <ComboBox fx:id="comboBoxPageNumbers" minHeight="25.0" minWidth="122.0" prefHeight="25.0" prefWidth="122.0" />
+                  <Label minHeight="31.0" minWidth="128.0" prefHeight="31.0" prefWidth="128.0" text="Start page number:" />
+                  <TextField fx:id="textFieldStartPage" prefHeight="25.0" prefWidth="45.0" />
+                  <Label layoutX="10.0" layoutY="10.0" minHeight="31.0" minWidth="128.0" prefHeight="31.0" prefWidth="128.0" text="End page number:" />
+                  <TextField fx:id="textFieldEndPage" layoutX="148.0" layoutY="10.0" prefHeight="25.0" prefWidth="45.0" />
+                  <Label layoutX="203.0" layoutY="10.0" minHeight="31.0" minWidth="157.0" prefHeight="31.0" prefWidth="157.0" text="Starting page number:" />
+                  <TextField fx:id="textFieldStartPageNumber" layoutX="341.0" layoutY="10.0" prefHeight="25.0" prefWidth="45.0" />
+               </children>
+               <padding>
+                  <Insets left="10.0" right="10.0" top="10.0" />
+               </padding>
+            </HBox>
+            <HBox fx:id="hBoxNumbering2" prefHeight="100.0" prefWidth="200.0" spacing="10.0">
+               <children>
+                  <Label minHeight="26.0" minWidth="76.0" prefHeight="26.0" prefWidth="76.0" text="Page text:" />
+                  <TextField fx:id="textFieldPageText" maxWidth="1.7976931348623157E308" prefHeight="27.0" prefWidth="784.0" />
+               </children>
+               <padding>
+                  <Insets left="10.0" right="10.0" top="10.0" />
+               </padding>
+            </HBox>
+         </children>
+      </VBox>
       <HBox fx:id="hBoxPrintTime" maxWidth="1.7976931348623157E308" prefHeight="36.0" prefWidth="1034.0" spacing="10.0">
          <children>
-            <Label layoutX="142.0" layoutY="10.0" minHeight="26.0" minWidth="108.0" prefHeight="26.0" prefWidth="108.0" text="Print time pos:" />
+            <Label layoutX="142.0" layoutY="10.0" minHeight="26.0" minWidth="65.0" prefHeight="26.0" prefWidth="65.0" text="Time pos:" />
             <ComboBox fx:id="comboBoxPrintTime" minHeight="25.0" minWidth="122.0" prefHeight="25.0" prefWidth="122.0" />
+            <CheckBox fx:id="checkPrintOnlyText" mnemonicParsing="false" onAction="#checkBoxPrintExtraPressed" prefHeight="18.0" prefWidth="135.0" text="Print only text">
+               <padding>
+                  <Insets top="5.0" />
+               </padding>
+            </CheckBox>
+            <Label minHeight="26.0" minWidth="61.0" prefHeight="26.0" prefWidth="61.0" text="Time text:" />
+            <TextField fx:id="textFieldTimeText" maxWidth="1.7976931348623157E308" prefHeight="27.0" prefWidth="628.0" />
          </children>
          <padding>
             <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
@@ -100,10 +120,10 @@
       </HBox>
       <HBox fx:id="hBoxExtraText" maxWidth="1.7976931348623157E308" prefHeight="36.0" prefWidth="1034.0" spacing="10.0" VBox.vgrow="ALWAYS">
          <children>
-            <Label layoutX="142.0" layoutY="10.0" minHeight="26.0" minWidth="108.0" prefHeight="26.0" prefWidth="108.0" text="Print extra pos:" />
+            <Label layoutX="142.0" layoutY="10.0" minHeight="26.0" minWidth="63.0" prefHeight="26.0" prefWidth="63.0" text="Extra pos:" />
             <ComboBox fx:id="comboBoxExtraText" minHeight="25.0" minWidth="122.0" prefHeight="25.0" prefWidth="122.0" />
-            <Label minHeight="26.0" minWidth="108.0" prefHeight="26.0" prefWidth="108.0" text="Print extra text:" />
-            <TextField fx:id="textFiledExtraText" maxWidth="1.7976931348623157E308" prefHeight="27.0" prefWidth="784.0" HBox.hgrow="ALWAYS" />
+            <Label minHeight="26.0" minWidth="64.0" prefHeight="26.0" prefWidth="64.0" text="Extra text:" />
+            <TextField fx:id="textFiledExtraText" maxWidth="1.7976931348623157E308" prefHeight="27.0" prefWidth="629.0" HBox.hgrow="ALWAYS" />
          </children>
          <padding>
             <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />

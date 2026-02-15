@@ -10,22 +10,17 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="aa1e9e87-70bd-4694-8383-6a452f17e359" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/artifacts/pdfpagenumbers_jar.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/encodings.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/uiDesigner.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.mvn/wrapper/maven-wrapper.jar" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.mvn/wrapper/maven-wrapper.properties" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/mvnw" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/mvnw.cmd" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/metait/write/pagenumbers/pdf/pdfpagenumbers/PdfPageNumberApplication.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/metait/write/pagenumbers/pdf/pdfpagenumbers/PdfPageNumberController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/module-info.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/com/metait/write/pagenumbers/pdf/pdfpagenumbers/pdfpagenumbers-view.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out.pdf" beforeDir="false" afterPath="$PROJECT_DIR$/out.pdf" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/pdfpagenumbers_jar/pdfpagenumbers.jar" beforeDir="false" afterPath="$PROJECT_DIR$/out/artifacts/pdfpagenumbers_jar/pdfpagenumbers.jar" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/output.pdf" beforeDir="false" afterPath="$PROJECT_DIR$/output.pdf" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pdfpagenumbers.jar" beforeDir="false" afterPath="$PROJECT_DIR$/pdfpagenumbers.jar" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/metait/write/pagenumbers/pdf/pdfpagenumbers/PdfPageNumberController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/metait/write/pagenumbers/pdf/pdfpagenumbers/PdfPageNumberController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/metait/write/pagenumbers/pdf/pdfpagenumbers/cmdline/PdfPageNumbersCmdline.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/metait/write/pagenumbers/pdf/pdfpagenumbers/cmdline/PdfPageNumbersCmdline.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/metait/write/pagenumbers/pdf/pdfpagenumbers/cmdline/PrintLogicPosition.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/metait/write/pagenumbers/pdf/pdfpagenumbers/cmdline/PrintLogicPosition.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/com/metait/write/pagenumbers/pdf/pdfpagenumbers/pdfpagenumbers-view.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/metait/write/pagenumbers/pdf/pdfpagenumbers/pdfpagenumbers-view.fxml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -63,9 +58,10 @@
     "Application.PdfPageNumberApplication.executor": "Run",
     "Application.PdfPageNumbersCmdline command (1).executor": "Run",
     "Application.PdfPageNumbersCmdline command (2).executor": "Run",
-    "Application.PdfPageNumbersCmdline command (3).executor": "Debug",
+    "Application.PdfPageNumbersCmdline command (3).executor": "Run",
     "Application.PdfPageNumbersCmdline command (4).executor": "Run",
     "Application.PdfPageNumbersCmdline command (5).executor": "Run",
+    "Application.PdfPageNumbersCmdline command (6).executor": "Run",
     "Application.PdfPageNumbersCmdline command.executor": "Run",
     "Application.PdfPageNumbersCmdline help.executor": "Run",
     "Application.PdfPageNumbersCmdline kissa.executor": "Run",
@@ -78,7 +74,7 @@
     "git-widget-placeholder": "master",
     "kotlin-language-version-configured": "true",
     "last_opened_file_path": "/home/tk/Documents/Java/project/javafx/pdfpagenumbers",
-    "project.structure.last.edited": "Artifacts",
+    "project.structure.last.edited": "Project",
     "project.structure.proportion": "0.15",
     "project.structure.side.proportion": "0.43333334",
     "settings.editor.selected.configurable": "preferences.JavaFX"
@@ -93,7 +89,7 @@
       <recent name="com.metait.write.pagenumbers.pdf.pdfpagenumbers" />
     </key>
   </component>
-  <component name="RunManager" selected="Application.PdfPageNumbersCmdline command (5)">
+  <component name="RunManager" selected="Application.PdfPageNumberApplication">
     <configuration name="PdfPageNumberApplication" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="com.metait.write.pagenumbers.pdf.pdfpagenumbers.PdfPageNumberApplication" />
       <module name="pdfpagenumbers" />
@@ -167,7 +163,21 @@
     <configuration name="PdfPageNumbersCmdline command (5)" type="Application" factoryName="Application">
       <option name="MAIN_CLASS_NAME" value="com.metait.write.pagenumbers.pdf.pdfpagenumbers.cmdline.PdfPageNumbersCmdline" />
       <module name="pdfpagenumbers" />
-      <option name="PROGRAM_PARAMETERS" value="jokker2.pdf out.pdf -command=&quot;printtime_left printtext_center='Kissa kävelee...' pagenumbers_right printtime_text='printtimetext'&quot;" />
+      <option name="PROGRAM_PARAMETERS" value="jokker2.pdf out.pdf -command=&quot;printtime_left printtext_center='Kissa kävelee...' pagenumbers_right" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.metait.write.pagenumbers.pdf.pdfpagenumbers.cmdline.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="PdfPageNumbersCmdline command (6)" type="Application" factoryName="Application">
+      <option name="MAIN_CLASS_NAME" value="com.metait.write.pagenumbers.pdf.pdfpagenumbers.cmdline.PdfPageNumbersCmdline" />
+      <module name="pdfpagenumbers" />
+      <option name="PROGRAM_PARAMETERS" value="jokker2.pdf out.pdf -command=&quot;printtime_left printtext_center='Kissa kävelee...' pagenumbers_right" />
       <extension name="coverage">
         <pattern>
           <option name="PATTERN" value="com.metait.write.pagenumbers.pdf.pdfpagenumbers.cmdline.*" />
@@ -239,6 +249,7 @@
       <item itemvalue="Application.PdfPageNumbersCmdline command (3)" />
       <item itemvalue="Application.PdfPageNumbersCmdline command (4)" />
       <item itemvalue="Application.PdfPageNumbersCmdline command (5)" />
+      <item itemvalue="Application.PdfPageNumbersCmdline command (6)" />
       <item itemvalue="Application.PdfPageNumbersCmdline help" />
       <item itemvalue="Application.PdfPageNumbersCmdline kissa" />
       <item itemvalue="Application.PdfPageNumbersCmdline nopagenumbers" />
@@ -247,8 +258,8 @@
     </list>
     <recent_temporary>
       <list>
-        <item itemvalue="Application.PdfPageNumbersCmdline" />
         <item itemvalue="Application.PdfPageNumberApplication" />
+        <item itemvalue="Application.PdfPageNumbersCmdline" />
       </list>
     </recent_temporary>
   </component>
@@ -268,103 +279,78 @@
       <breakpoints>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/com/metait/write/pagenumbers/pdf/pdfpagenumbers/cmdline/PdfPageNumbersCmdline.java</url>
-          <line>286</line>
+          <line>317</line>
           <option name="timeStamp" value="25" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/com/metait/write/pagenumbers/pdf/pdfpagenumbers/cmdline/PdfPageNumbersCmdline.java</url>
-          <line>165</line>
-          <option name="timeStamp" value="27" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/com/metait/write/pagenumbers/pdf/pdfpagenumbers/cmdline/PdfPageNumbersCmdline.java</url>
-          <line>647</line>
+          <line>737</line>
           <option name="timeStamp" value="30" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/com/metait/write/pagenumbers/pdf/pdfpagenumbers/cmdline/PdfPageNumbersCmdline.java</url>
-          <line>191</line>
+          <line>200</line>
           <option name="timeStamp" value="31" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/com/metait/write/pagenumbers/pdf/pdfpagenumbers/cmdline/PdfPageNumbersCmdline.java</url>
-          <line>512</line>
+          <line>572</line>
           <option name="timeStamp" value="35" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/com/metait/write/pagenumbers/pdf/pdfpagenumbers/cmdline/PdfPageNumbersCmdline.java</url>
-          <line>340</line>
+          <line>383</line>
           <option name="timeStamp" value="36" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/com/metait/write/pagenumbers/pdf/pdfpagenumbers/cmdline/PdfPageNumbersCmdline.java</url>
-          <line>366</line>
+          <line>413</line>
           <option name="timeStamp" value="38" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/com/metait/write/pagenumbers/pdf/pdfpagenumbers/cmdline/PdfPageNumbersCmdline.java</url>
-          <line>657</line>
+          <line>747</line>
           <option name="timeStamp" value="39" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/com/metait/write/pagenumbers/pdf/pdfpagenumbers/cmdline/PdfPageNumbersCmdline.java</url>
-          <line>383</line>
+          <line>430</line>
           <option name="timeStamp" value="40" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/com/metait/write/pagenumbers/pdf/pdfpagenumbers/PdfPageNumberController.java</url>
-          <line>301</line>
+          <line>308</line>
           <option name="timeStamp" value="41" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/com/metait/write/pagenumbers/pdf/pdfpagenumbers/PdfPageNumberController.java</url>
-          <line>276</line>
+          <line>283</line>
           <option name="timeStamp" value="46" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/com/metait/write/pagenumbers/pdf/pdfpagenumbers/PdfPageNumberController.java</url>
-          <line>310</line>
+          <line>317</line>
           <option name="timeStamp" value="47" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/com/metait/write/pagenumbers/pdf/pdfpagenumbers/cmdline/PdfPageNumbersCmdline.java</url>
-          <line>523</line>
+          <line>583</line>
           <option name="timeStamp" value="49" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/com/metait/write/pagenumbers/pdf/pdfpagenumbers/PdfPageNumberController.java</url>
-          <line>152</line>
+          <line>159</line>
           <option name="timeStamp" value="50" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/com/metait/write/pagenumbers/pdf/pdfpagenumbers/cmdline/PdfPageNumbersCmdline.java</url>
-          <line>311</line>
-          <option name="timeStamp" value="51" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/com/metait/write/pagenumbers/pdf/pdfpagenumbers/PdfPageNumberController.java</url>
-          <line>411</line>
-          <option name="timeStamp" value="52" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/com/metait/write/pagenumbers/pdf/pdfpagenumbers/PdfPageNumberController.java</url>
-          <line>319</line>
+          <line>326</line>
           <option name="timeStamp" value="53" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/com/metait/write/pagenumbers/pdf/pdfpagenumbers/PdfPageNumberController.java</url>
-          <line>413</line>
-          <option name="timeStamp" value="54" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/com/metait/write/pagenumbers/pdf/pdfpagenumbers/PdfPageNumberController.java</url>
-          <line>322</line>
+          <line>329</line>
           <option name="timeStamp" value="55" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/com/metait/write/pagenumbers/pdf/pdfpagenumbers/PdfPageNumberController.java</url>
-          <line>419</line>
-          <option name="timeStamp" value="56" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/com/metait/write/pagenumbers/pdf/pdfpagenumbers/cmdline/PdfPageNumbersCmdline.java</url>
@@ -378,33 +364,198 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/com/metait/write/pagenumbers/pdf/pdfpagenumbers/cmdline/PdfPageNumbersCmdline.java</url>
-          <line>35</line>
-          <option name="timeStamp" value="59" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/com/metait/write/pagenumbers/pdf/pdfpagenumbers/cmdline/PdfPageNumbersCmdline.java</url>
-          <line>39</line>
-          <option name="timeStamp" value="60" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/com/metait/write/pagenumbers/pdf/pdfpagenumbers/cmdline/PdfPageNumbersCmdline.java</url>
-          <line>150</line>
+          <line>152</line>
           <option name="timeStamp" value="61" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/com/metait/write/pagenumbers/pdf/pdfpagenumbers/cmdline/PdfPageNumbersCmdline.java</url>
-          <line>254</line>
+          <line>285</line>
           <option name="timeStamp" value="62" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/com/metait/write/pagenumbers/pdf/pdfpagenumbers/cmdline/PdfPageNumbersCmdline.java</url>
-          <line>689</line>
+          <line>779</line>
           <option name="timeStamp" value="63" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/com/metait/write/pagenumbers/pdf/pdfpagenumbers/cmdline/PdfPageNumbersCmdline.java</url>
-          <line>717</line>
+          <line>807</line>
           <option name="timeStamp" value="64" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/com/metait/write/pagenumbers/pdf/pdfpagenumbers/PdfPageNumberController.java</url>
+          <line>429</line>
+          <option name="timeStamp" value="65" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/com/metait/write/pagenumbers/pdf/pdfpagenumbers/PdfPageNumberController.java</url>
+          <line>448</line>
+          <option name="timeStamp" value="66" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/com/metait/write/pagenumbers/pdf/pdfpagenumbers/PdfPageNumberController.java</url>
+          <line>331</line>
+          <option name="timeStamp" value="68" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/com/metait/write/pagenumbers/pdf/pdfpagenumbers/cmdline/PdfPageNumbersCmdline.java</url>
+          <line>446</line>
+          <option name="timeStamp" value="69" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/com/metait/write/pagenumbers/pdf/pdfpagenumbers/PdfPageNumberController.java</url>
+          <line>487</line>
+          <option name="timeStamp" value="71" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/com/metait/write/pagenumbers/pdf/pdfpagenumbers/cmdline/PdfPageNumbersCmdline.java</url>
+          <line>589</line>
+          <option name="timeStamp" value="72" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/com/metait/write/pagenumbers/pdf/pdfpagenumbers/cmdline/PdfPageNumbersCmdline.java</url>
+          <line>635</line>
+          <option name="timeStamp" value="73" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/com/metait/write/pagenumbers/pdf/pdfpagenumbers/cmdline/PdfPageNumbersCmdline.java</url>
+          <line>459</line>
+          <option name="timeStamp" value="74" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/com/metait/write/pagenumbers/pdf/pdfpagenumbers/PdfPageNumberController.java</url>
+          <line>340</line>
+          <option name="timeStamp" value="75" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/com/metait/write/pagenumbers/pdf/pdfpagenumbers/cmdline/PdfPageNumbersCmdline.java</url>
+          <line>906</line>
+          <option name="timeStamp" value="76" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/com/metait/write/pagenumbers/pdf/pdfpagenumbers/cmdline/PdfPageNumbersCmdline.java</url>
+          <line>902</line>
+          <option name="timeStamp" value="77" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/com/metait/write/pagenumbers/pdf/pdfpagenumbers/cmdline/PdfPageNumbersCmdline.java</url>
+          <line>953</line>
+          <option name="timeStamp" value="78" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/com/metait/write/pagenumbers/pdf/pdfpagenumbers/cmdline/PdfPageNumbersCmdline.java</url>
+          <line>176</line>
+          <option name="timeStamp" value="79" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/com/metait/write/pagenumbers/pdf/pdfpagenumbers/cmdline/PdfPageNumbersCmdline.java</url>
+          <line>921</line>
+          <option name="timeStamp" value="83" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/com/metait/write/pagenumbers/pdf/pdfpagenumbers/cmdline/PdfPageNumbersCmdline.java</url>
+          <line>243</line>
+          <option name="timeStamp" value="84" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/com/metait/write/pagenumbers/pdf/pdfpagenumbers/cmdline/PdfPageNumbersCmdline.java</url>
+          <line>359</line>
+          <option name="timeStamp" value="86" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/com/metait/write/pagenumbers/pdf/pdfpagenumbers/cmdline/PdfPageNumbersCmdline.java</url>
+          <line>392</line>
+          <option name="timeStamp" value="87" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/com/metait/write/pagenumbers/pdf/pdfpagenumbers/cmdline/PdfPageNumbersCmdline.java</url>
+          <line>397</line>
+          <option name="timeStamp" value="88" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/com/metait/write/pagenumbers/pdf/pdfpagenumbers/cmdline/PdfPageNumbersCmdline.java</url>
+          <line>228</line>
+          <option name="timeStamp" value="89" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/com/metait/write/pagenumbers/pdf/pdfpagenumbers/cmdline/PdfPageNumbersCmdline.java</url>
+          <line>404</line>
+          <option name="timeStamp" value="90" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/com/metait/write/pagenumbers/pdf/pdfpagenumbers/cmdline/PdfPageNumbersCmdline.java</url>
+          <line>831</line>
+          <option name="timeStamp" value="92" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/com/metait/write/pagenumbers/pdf/pdfpagenumbers/cmdline/PdfPageNumbersCmdline.java</url>
+          <line>347</line>
+          <option name="timeStamp" value="94" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/com/metait/write/pagenumbers/pdf/pdfpagenumbers/cmdline/PdfPageNumbersCmdline.java</url>
+          <line>169</line>
+          <option name="timeStamp" value="95" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/com/metait/write/pagenumbers/pdf/pdfpagenumbers/cmdline/PdfPageNumbersCmdline.java</url>
+          <line>165</line>
+          <option name="timeStamp" value="96" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/com/metait/write/pagenumbers/pdf/pdfpagenumbers/PdfPageNumberController.java</url>
+          <line>424</line>
+          <option name="timeStamp" value="97" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/com/metait/write/pagenumbers/pdf/pdfpagenumbers/PdfPageNumberController.java</url>
+          <line>515</line>
+          <option name="timeStamp" value="98" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/com/metait/write/pagenumbers/pdf/pdfpagenumbers/PdfPageNumberController.java</url>
+          <line>530</line>
+          <option name="timeStamp" value="99" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/com/metait/write/pagenumbers/pdf/pdfpagenumbers/PdfPageNumberController.java</url>
+          <line>522</line>
+          <option name="timeStamp" value="100" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/com/metait/write/pagenumbers/pdf/pdfpagenumbers/PdfPageNumberController.java</url>
+          <line>534</line>
+          <option name="timeStamp" value="101" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/com/metait/write/pagenumbers/pdf/pdfpagenumbers/PdfPageNumberController.java</url>
+          <line>502</line>
+          <option name="timeStamp" value="102" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/com/metait/write/pagenumbers/pdf/pdfpagenumbers/cmdline/PdfPageNumbersCmdline.java</url>
+          <line>924</line>
+          <option name="timeStamp" value="103" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/com/metait/write/pagenumbers/pdf/pdfpagenumbers/cmdline/PdfPageNumbersCmdline.java</url>
+          <line>878</line>
+          <option name="timeStamp" value="104" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/com/metait/write/pagenumbers/pdf/pdfpagenumbers/cmdline/PdfPageNumbersCmdline.java</url>
+          <line>222</line>
+          <option name="timeStamp" value="105" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/com/metait/write/pagenumbers/pdf/pdfpagenumbers/PdfPageNumberController.java</url>
+          <line>504</line>
+          <option name="timeStamp" value="106" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/com/metait/write/pagenumbers/pdf/pdfpagenumbers/cmdline/PdfPageNumbersCmdline.java</url>
+          <line>904</line>
+          <option name="timeStamp" value="107" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

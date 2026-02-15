@@ -10,10 +10,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
-import javafx.scene.layout.Border;
-import javafx.scene.layout.BorderStroke;
-import javafx.scene.layout.BorderStrokeStyle;
-import javafx.scene.layout.HBox;
+import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
 import javafx.stage.DirectoryChooser;
 import javafx.stage.FileChooser;
@@ -53,6 +50,10 @@ public class PdfPageNumberController {
     @FXML
     protected HBox hBoxNumbering;
     @FXML
+    protected HBox hBoxNumbering2;
+    @FXML
+    protected VBox vboxPage;
+    @FXML
     private TextField textFieldStartPage;
     @FXML
     private TextField textFieldEndPage;
@@ -78,6 +79,12 @@ public class PdfPageNumberController {
     protected ComboBox<String> comboBoxPageNumbers;
     @FXML
     protected Button buttonOpenResult;
+    @FXML
+    protected TextField textFieldTimeText;
+    @FXML
+    protected TextField textFieldPageText;
+    @FXML
+    protected CheckBox checkPrintOnlyText;
 
     private FileChooser inputFileChooser = new FileChooser();
     private DirectoryChooser directoryOutChooser = new DirectoryChooser();
@@ -109,7 +116,7 @@ public class PdfPageNumberController {
         hBoxPrintTime.setDisable(true);
         hBoxExtraText.setBorder(new Border(new BorderStroke(Color.BLACK, BorderStrokeStyle.SOLID, null , null)));
         hBoxPrintTime.setBorder(new Border(new BorderStroke(Color.BLACK, BorderStrokeStyle.SOLID, null , null)));
-        hBoxNumbering.setBorder(new Border(new BorderStroke(Color.BLACK, BorderStrokeStyle.SOLID, null , null)));
+        vboxPage.setBorder(new Border(new BorderStroke(Color.BLACK, BorderStrokeStyle.SOLID, null , null)));
       //hBoxNumbering.setDisable(true);
         comboBoxPageNumbers.setItems(pdfTextPositions);
         comboBoxPrintTime.setItems(pdfTextPositions);
@@ -324,8 +331,14 @@ public class PdfPageNumberController {
     //    strCommand = "printtext_";
         labelCommand.setText(strCommand);
         openResutlFile = outPdfFile;
+        /*
+         writePDFPageNumbers(iStartPage, iEndPage, iStartPageNumber, inputPdfFile, outputPdfFile, null);
+
         String result = cmdline.writePDFPageNumbers(iStartPage, iEndPage, iStartPageNumber,
                                                     inputPdfFile, outPdfFile, strCommand);
+        */
+        String[] paramArgs = {inputPdfFile.getAbsolutePath(), outPdfFile.getAbsolutePath(), strCommand};
+        String result = cmdline.writePDFPageNumbers(paramArgs);
         if (!result.trim().isEmpty())
             textAreaResult.setText(result);
         else {
@@ -406,19 +419,15 @@ public class PdfPageNumberController {
                 setLabelMsg("Selected combo values cannot be the same in 'Print time' and 'Extra text' controls!");
                 return true;
             }
-
         }
 
-        if (checkBoxPrintExtra.isSelected())
-        {
+        if (checkBoxPrintExtra.isSelected()) {
             String strValueOfExtraText = textFiledExtraText.getText();
-            if (strValueOfExtraText == null || strValueOfExtraText.isEmpty() )
-            {
-                setLabelMsg("'Extra text' control is empty! Give same value of it.");
+            if (strValueOfExtraText == null || strValueOfExtraText.isEmpty()) {
+                setLabelMsg("'Extra text' control is empty! Give some value of it.");
                 return true;
             }
-            if (strValueOfExtraText != null && strValueOfExtraText.trim().isEmpty() && strValueOfExtraText.contains(" "))
-            {
+            if (strValueOfExtraText != null && strValueOfExtraText.trim().isEmpty() && strValueOfExtraText.contains(" ")) {
                 setLabelMsg("");
                 ButtonType okButton = new ButtonType("Ok", ButtonBar.ButtonData.OK_DONE);
                 ButtonType cancelButton = new ButtonType("Cancel", ButtonBar.ButtonData.CANCEL_CLOSE);
@@ -429,15 +438,40 @@ public class PdfPageNumberController {
                 Optional<ButtonType> result = alert.showAndWait();
                 boolean okSelected = false;
                 ButtonType resultButtonType = result.get();
-                if (result.isPresent() && resultButtonType.getButtonData() == ButtonBar.ButtonData.OK_DONE){
+                if (result.isPresent() && resultButtonType.getButtonData() == ButtonBar.ButtonData.OK_DONE) {
                     okSelected = true;
                 }
                 if (!okSelected)
                     return true;
             }
 
-        }
+            /*
+            if (checkBoxPrintTime.isSelected()) {
+                String strValueOfPrintText = textFieldTimeText.getText();
+                if (strValueOfPrintText == null || strValueOfPrintText.isEmpty()) {
+                    setLabelMsg("'Print time text' control is empty! Give some value of it.");
+                    return true;
+                }
+                if (strValueOfPrintText.trim().isEmpty() && strValueOfPrintText.contains(" ")) {
+                    setLabelMsg("");
+                    ButtonType okButton = new ButtonType("Ok", ButtonBar.ButtonData.OK_DONE);
+                    ButtonType cancelButton = new ButtonType("Cancel", ButtonBar.ButtonData.CANCEL_CLOSE);
+                    Alert alert = new Alert(Alert.AlertType.WARNING,
+                            "'Print time text' control is contains only space!\nDo you want to continue?", okButton, cancelButton);
 
+                    alert.setTitle("Contains space characters");
+                    Optional<ButtonType> result = alert.showAndWait();
+                    boolean okSelected = false;
+                    ButtonType resultButtonType = result.get();
+                    if (result.isPresent() && resultButtonType.getButtonData() == ButtonBar.ButtonData.OK_DONE) {
+                        okSelected = true;
+                    }
+                    if (!okSelected)
+                        return true;
+                }
+            }
+             */
+        }
         return ret;
     }
 
@@ -450,19 +484,59 @@ public class PdfPageNumberController {
     private String getCurrentCommand()
     {
         String ret = "";
-        if (checkBoxNumbering.isSelected() && !checkBoxPrintTime.isSelected() && !checkBoxPrintExtra.isSelected())
+        StringBuffer sbCommand = new StringBuffer();
+        if (checkBoxNumbering.isSelected())
         {
-            if (textFieldStartPage.getText().trim().isEmpty()
-                    && textFieldStartPageNumber.getText().trim().isEmpty()
-                    && textFieldEndPage.getText().trim().isEmpty())
-                ret = "";
+            if (comboBoxPageNumbers.getValue().equals("RIGHT"))
+                sbCommand.append(" pagenumbers_right ");
             else
-            {
-               // TODO !
-                ;
+            if (comboBoxPageNumbers.getValue().equals("CENTER"))
+                sbCommand.append(" pagenumbers_center ");
+            else
+            if (comboBoxPageNumbers.getValue().equals("LEFT"))
+                sbCommand.append(" pagenumbers_left ");
+            if (!textFieldPageText.getText().trim().isEmpty()) {
+                sbCommand.append(" pagenumbers_text='" +textFieldPageText.getText().trim() +"' ");
             }
         }
-        return ret;
+
+        if (checkBoxPrintTime.isSelected())
+        {
+            if (checkPrintOnlyText.isSelected())
+                sbCommand.append(" timetextonly ");
+            if (comboBoxPrintTime.getValue().equals("RIGHT"))
+                sbCommand.append(" printtime_right ");
+            else
+            if (comboBoxPrintTime.getValue().equals("CENTER"))
+                sbCommand.append(" printtime_center ");
+            else
+            if (comboBoxPrintTime.getValue().equals("LEFT"))
+                sbCommand.append(" printtime_left ");
+            String strValue = textFieldTimeText.getText();
+            if (strValue != null && !strValue.trim().isEmpty()) {
+                sbCommand.append(" printtime_text='" +textFieldTimeText.getText().trim() +"' ");
+            }
+        }
+
+        if (checkBoxPrintExtra.isSelected())
+        {
+            if (comboBoxExtraText.getValue().equals("RIGHT"))
+                sbCommand.append(" printtext_right=");
+            else
+            if (comboBoxExtraText.getValue().equals("CENTER"))
+                sbCommand.append(" printtext_center=");
+            else
+            if (comboBoxExtraText.getValue().equals("LEFT"))
+                sbCommand.append(" printtext_left=");
+            if (!textFiledExtraText.getText().trim().isEmpty()) {
+                sbCommand.append("'" +textFiledExtraText.getText().trim() +"' ");
+            }
+        }
+        if (sbCommand.length() > 0)
+        {
+            return " -command=\"" +sbCommand.toString().trim() +"\"";
+        }
+        return sbCommand.toString();
     }
 
     @FXML
@@ -478,10 +552,14 @@ public class PdfPageNumberController {
     @FXML
     protected void checkBoxNumberingPressed()
     {
-        if (checkBoxNumbering.isSelected())
+        if (checkBoxNumbering.isSelected()) {
             hBoxNumbering.setDisable(false);
-        else
+            hBoxNumbering2.setDisable(false);
+        }
+        else {
             hBoxNumbering.setDisable(true);
+            hBoxNumbering2.setDisable(true);
+        }
         checkIsAllowedToStartConversion();
     }
 

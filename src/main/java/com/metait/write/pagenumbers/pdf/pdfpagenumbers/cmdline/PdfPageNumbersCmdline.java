@@ -45,7 +45,7 @@ public class PdfPageNumbersCmdline {
         systemErr("Usage: " +this.getClass().getSimpleName() +" input.pdf output.pdf" );
         systemErr("Usage: " +this.getClass().getSimpleName() +" input.pdf output.pdf -command=\"pagenumbers_left|pagenumbers_center|pagenumbers_right\"");
         systemErr("Usage: " +this.getClass().getSimpleName() +" input.pdf output.pdf -command=\"printtime_left|printtime_center|printtime_right [printtime_text='ddd ddd dddd']\"");
-        systemErr("Usage: " +this.getClass().getSimpleName() +" input.pdf output.pdf -command=\"printtext_left='ddfd'|printtext_center='eee'|printtext_right='eee' startpage=2 [endpage=24] startpagenumber=1\" " );
+        systemErr("Usage: " +this.getClass().getSimpleName() +" input.pdf output.pdf -command=\"printtext_left='ddfd'|printtext_center='eee'|printtext_right='eee' [timetextonly] startpage=2 [endpage=24] startpagenumber=1\" " );
         systemErr("");
         systemErr("  where almost all above -commmand options can used the same, except the same logical position in side of command!");
         systemErr("  where | character means logical or. And it can't be part of command.");
@@ -145,7 +145,9 @@ public class PdfPageNumbersCmdline {
     }
 
     private void writePDFPageNumbers(String strText, File inputFile, File outputFile,
-                                     PrintLogicPosition printPageNumbers, PrintLogicPosition printExtraText, PrintLogicPosition printExtraPrintTime)
+                                     PrintLogicPosition printPageNumbers,
+                                     PrintLogicPosition printExtraText,
+                                     PrintLogicPosition printExtraPrintTime)
     {
         try {
             PdfReader reader = new PdfReader(inputFile.getAbsolutePath());
@@ -157,6 +159,7 @@ public class PdfPageNumbersCmdline {
             if (numberVariablesAreNotOK(iDocPages))
                 return;
 
+            String strPrintTimeText = null;
             for (int i = 1; i <= reader.getNumberOfPages(); i++) {
                 if (iStartPage > 0 && i < iStartPage) {
                     systemOut("Skipped pdf page: " +i +" because of " +i +" is lower than: " +iStartPage);
@@ -173,7 +176,10 @@ public class PdfPageNumbersCmdline {
 
                 if (!bNoPageNumbers) {
                     if (printPageNumbers.getPrintPosition() == PRINTPOSITION.RIGHT) {
-                        t = new Phrase(strPrefix + +iStartPageNumber + "/" + reader.getNumberOfPages(), new Font(Font.HELVETICA, 9));
+                        String strValue = printPageNumbers.getText();
+                        if (strValue != null && !strValue.isEmpty())
+                            strValue = strValue + " ";
+                        t = new Phrase( strValue+ +iStartPageNumber + "/" + reader.getNumberOfPages(), new Font(Font.HELVETICA, 9));
                         ColumnText.showTextAligned(
                                 stamper.getOverContent(i), Element.ALIGN_RIGHT,
                                 t, xt, yt, 0);
@@ -182,7 +188,10 @@ public class PdfPageNumbersCmdline {
                     {
                         if (printPageNumbers.getPrintPosition() == PRINTPOSITION.CENTER) {
                             xt = reader.getPageSize(i).getWidth() - (reader.getPageSize(i).getWidth() / 2);
-                            t = new Phrase(strPrefix + +iStartPageNumber + "/" + reader.getNumberOfPages(), new Font(Font.HELVETICA, 9));
+                            String strValue = printPageNumbers.getText();
+                            if (strValue != null && !strValue.isEmpty())
+                                strValue = strValue + " ";
+                            t = new Phrase(strValue + +iStartPageNumber + "/" + reader.getNumberOfPages(), new Font(Font.HELVETICA, 9));
                             ColumnText.showTextAligned(
                                     stamper.getOverContent(i), Element.ALIGN_RIGHT,
                                     t, xt, yt, 0);
@@ -191,7 +200,10 @@ public class PdfPageNumbersCmdline {
                         {
                             if (printPageNumbers.getPrintPosition() == PRINTPOSITION.LEFT) {
                                 xt = 50;
-                                t = new Phrase(strPrefix + +iStartPageNumber + "/" + reader.getNumberOfPages(), new Font(Font.HELVETICA, 9));
+                                String strValue = printPageNumbers.getText();
+                                if (strValue != null && !strValue.isEmpty())
+                                    strValue = strValue + " ";
+                                t = new Phrase(strValue + +iStartPageNumber + "/" + reader.getNumberOfPages(), new Font(Font.HELVETICA, 9));
                                 ColumnText.showTextAligned(
                                         stamper.getOverContent(i), Element.ALIGN_RIGHT,
                                         t, xt, yt, 0);
@@ -203,13 +215,24 @@ public class PdfPageNumbersCmdline {
                 if (printExtraPrintTime != null) {
                     if (printExtraPrintTime.getPrintPosition() == PRINTPOSITION.CENTER) {
                         xt = reader.getPageSize(i).getWidth() - (reader.getPageSize(i).getWidth() / 2);
-                        t = new Phrase(printExtraPrintTime.getText(), new Font(Font.HELVETICA, 9));
+                        strPrintTimeText = printExtraPrintTime.getText();
+                        if (printExtraPrintTime.getCalendar() != null
+                                && !printExtraPrintTime.getTimeTextOnly()) {
+                            strPrintTimeText = printExtraPrintTime.getTextAndCalendarString();
+                        }
+                        t = new Phrase(strPrintTimeText, new Font(Font.HELVETICA, 9));
                         ColumnText.showTextAligned(
                                 stamper.getOverContent(i), Element.ALIGN_RIGHT,
                                 t, xt, yt, 0);
                     } else if (printExtraPrintTime.getPrintPosition() == PRINTPOSITION.LEFT) {
                         xt = 120;
-                        t = new Phrase(printExtraPrintTime.getText(), new Font(Font.HELVETICA, 9));
+                        strPrintTimeText = printExtraPrintTime.getText();
+                        if (printExtraPrintTime.getCalendar() != null
+                                && !printExtraPrintTime.getTimeTextOnly()) {
+                            strPrintTimeText = printExtraPrintTime.getTextAndCalendarString();
+                           // DO THIS!;
+                        }
+                        t = new Phrase(strPrintTimeText, new Font(Font.HELVETICA, 9));
                         ColumnText.showTextAligned(
                                 stamper.getOverContent(i), Element.ALIGN_RIGHT,
                                 t, xt, yt, 0);
@@ -217,7 +240,13 @@ public class PdfPageNumbersCmdline {
                     }
                     else if (printExtraPrintTime.getPrintPosition() == PRINTPOSITION.RIGHT) {
                         xt = reader.getPageSize(i).getWidth()-50;
-                        t = new Phrase(printExtraPrintTime.getText(), new Font(Font.HELVETICA, 9));
+                        strPrintTimeText = printExtraPrintTime.getText();
+                        if (printExtraPrintTime.getCalendar() != null
+                                && !printExtraPrintTime.getTimeTextOnly()) {
+                            strPrintTimeText = printExtraPrintTime.getTextAndCalendarString();
+                            // DO THIS!;
+                        }
+                        t = new Phrase(strPrintTimeText, new Font(Font.HELVETICA, 9));
                         ColumnText.showTextAligned(
                                 stamper.getOverContent(i), Element.ALIGN_RIGHT,
                                 t, xt, yt, 0);
@@ -228,13 +257,15 @@ public class PdfPageNumbersCmdline {
                 if (printExtraText != null) {
                     if (printExtraText.getPrintPosition() == PRINTPOSITION.CENTER) {
                         xt = reader.getPageSize(i).getWidth() - (reader.getPageSize(i).getWidth() / 2);
-                        t = new Phrase(printExtraText.getText(), new Font(Font.HELVETICA, 9));
+                        strPrintTimeText = printExtraText.getText();
+                        t = new Phrase(strPrintTimeText, new Font(Font.HELVETICA, 9));
                         ColumnText.showTextAligned(
                                 stamper.getOverContent(i), Element.ALIGN_RIGHT,
                                 t, xt, yt, 0);
                     } else if (printExtraText.getPrintPosition() == PRINTPOSITION.LEFT) {
                         xt = 120;
-                        t = new Phrase(printExtraText.getText(), new Font(Font.HELVETICA, 9));
+                        strPrintTimeText = printExtraText.getText();
+                        t = new Phrase(strPrintTimeText, new Font(Font.HELVETICA, 9));
                         ColumnText.showTextAligned(
                                 stamper.getOverContent(i), Element.ALIGN_RIGHT,
                                 t, xt, yt, 0);
@@ -242,11 +273,11 @@ public class PdfPageNumbersCmdline {
                     }
                     else if (printExtraText.getPrintPosition() == PRINTPOSITION.RIGHT) {
                         xt = reader.getPageSize(i).getWidth()-50;
-                        t = new Phrase(printExtraText.getText(), new Font(Font.HELVETICA, 9));
+                        strPrintTimeText = printExtraText.getText();
+                        t = new Phrase(strPrintTimeText, new Font(Font.HELVETICA, 9));
                         ColumnText.showTextAligned(
                                 stamper.getOverContent(i), Element.ALIGN_RIGHT,
                                 t, xt, yt, 0);
-
                     }
                 }
 
@@ -293,6 +324,16 @@ public class PdfPageNumbersCmdline {
         return true;
     }
 
+    private String getTextFromCommand(String strCommnad)
+    {
+        String ret = "";
+        if (strCommnad != null && !strCommnad.isEmpty() && !strCommnad.trim().isEmpty())
+        {
+            ret = strCommnad.trim();
+        }
+        return ret;
+    }
+
     public String writePDFPageNumbers(int p_iStartPage, int p_iEndPage, int p_iStartPageNumber,
                                     File inputFile, File outputFile, String strCommand)
     {
@@ -302,19 +343,21 @@ public class PdfPageNumbersCmdline {
         bCalledFromGui = true;
         String earlierInputFileName = inputFile.getAbsolutePath();
         inputPdfFile = getTempPdfCopyOf(inputFile);
-        if (strCommand != null && !strCommand.trim().isEmpty())
-        if (!checkStrCommandParameter(strCommand, null)) {
-            if (!spScreen.toString().isEmpty()) {
-                spScreen.append("\n");
-                spScreen.append("\n");
-                printHelp(null);
+        if (strCommand != null && !strCommand.trim().isEmpty()
+           && (printPageNumbers == null || printExtraText == null || printPrintTime == null)) {
+            if (!checkStrCommandParameter(strCommand, null)) {
+                if (!spScreen.toString().isEmpty()) {
+                    spScreen.append("\n");
+                    spScreen.append("\n");
+                    printHelp(null);
 
+                }
+                if (spScreen.toString().isEmpty())
+                    return "There is an error of -command= value!";
+                return spScreen.toString();
             }
-            if (spScreen.toString().isEmpty())
-                return "There is an error of -command= value!";
-            return spScreen.toString();
         }
-        writePDFPageNumbers(strCommand, inputPdfFile, outputFile,
+        writePDFPageNumbers(getTextFromCommand(strCommand), inputPdfFile, outputFile,
                 printPageNumbers, printExtraText, printPrintTime);
         String tmpFileName = inputPdfFile.getAbsolutePath();
         if (!earlierInputFileName.equals(tmpFileName))
@@ -345,17 +388,21 @@ public class PdfPageNumbersCmdline {
 
     private StringBuffer spScreen = new StringBuffer();
 
-    public void writePDFPageNumbers(String[] args)
+    public String writePDFPageNumbers(String[] args)
     {
-        if (!checkCmdLineOptions(args))
-            return;
+        if (!checkCmdLineOptions(args)) {
+            String msg = "Error in command line options!";
+            systemErr(msg);
+            return msg;
+        }
         if (!isFilenameValid(outputPdfFile.getAbsolutePath()))
         {
-            systemErr("The output file name is not valid file name!");
-            return;
+            String msg = "The output file name is not valid file name!";
+            systemErr(msg);
+            return msg;
         }
 
-        writePDFPageNumbers(iStartPage, iEndPage, iStartPageNumber, inputPdfFile, outputPdfFile, null);
+        return writePDFPageNumbers(iStartPage, iEndPage, iStartPageNumber, inputPdfFile, outputPdfFile, strCommand);
     }
 
     private boolean getNoPageNumbers(boolean bNoPageNumbers, String strCommand)
@@ -384,7 +431,17 @@ public class PdfPageNumbersCmdline {
         PrintLogicPosition ret = null;
         if (strCommand == null || strCommand.isEmpty())
             return printPageNumbers;
-        int ind = strCommand.indexOf("pagenumbers_");
+        String strCmd = new String(strCommand.replace("pagenumbers_text=", ""));
+        int ind2 = strCommand.indexOf("pagenumbers_text");
+        String strPreFixText = "";
+        if (ind2 > -1) {
+            strPreFixText = strCommand.substring(ind2 + 1);
+            if (strPreFixText != null && !strPreFixText.trim().isEmpty())
+                strPreFixText = strPreFixText.trim().replaceAll("'","");
+        }
+        strCmd = strCmd.trim();
+
+        int ind = strCmd.indexOf("pagenumbers_");
         if (ind == -1)
             return printPageNumbers;
         StringBuffer sp = new StringBuffer();
@@ -393,8 +450,10 @@ public class PdfPageNumbersCmdline {
         int i = ind +cnsSeek.length();
         int len = strCommand.length();
         char [] chArrayCommand = strCommand.toCharArray();
-        while (i < len && chArrayCommand[i] != ' ') {
-            sp.append(chArrayCommand[i]);
+        while (i < len && chArrayCommand[i] != ' ')
+        {
+            if (chArrayCommand[i] != '_')
+             sp.append(chArrayCommand[i]);
             i++;
         }
         String strValue = sp.toString();
@@ -402,18 +461,18 @@ public class PdfPageNumbersCmdline {
         {
             if (strValue.equals("pagenumbers_center"))
                 ret = new PrintLogicPosition(PRINTTYPE.PRINTPAGENUMBERS,
-                        PRINTPOSITION.CENTER, "", null,
-                        -1,-1,-1);
+                        PRINTPOSITION.CENTER, strPreFixText, null,
+                        -1,-1,-1, false);
             else
             if (strValue.equals("pagenumbers_right"))
                 ret = new PrintLogicPosition(PRINTTYPE.PRINTPAGENUMBERS,
-                        PRINTPOSITION.RIGHT, "", null,
-                        -1,-1,-1);
+                        PRINTPOSITION.RIGHT, strPreFixText, null,
+                        -1,-1,-1, false);
             else
             if (strValue.equals("pagenumbers_left"))
                 ret = new PrintLogicPosition(PRINTTYPE.PRINTPAGENUMBERS,
-                        PRINTPOSITION.LEFT, "", null,
-                        -1,-1,-1);
+                        PRINTPOSITION.LEFT, strPreFixText, null,
+                        -1,-1,-1, false);
             else
                 return printPageNumbers;
         }
@@ -423,7 +482,8 @@ public class PdfPageNumbersCmdline {
     private static PrintLogicPosition getDefaultPageNumberPosition()
     {
         return new PrintLogicPosition(PRINTTYPE.PRINTPAGENUMBERS,
-                PRINTPOSITION.RIGHT, "", null, -1,-1,-1);
+                PRINTPOSITION.RIGHT, "", null,
+                -1,-1,-1, false);
     }
 
     private void check2OfTooManyTheSameKindCmdLineOptions(PrintLogicPosition pos1, PrintLogicPosition pos2)
@@ -570,6 +630,8 @@ public class PdfPageNumbersCmdline {
             if (systemExit(6))
                 return false;
         }
+
+        /*
         try {
             printPageNumbers = getPrintPageNumberPosition(strCommand);
         }catch (TooMuchValuesInTheSameVariable tme){
@@ -595,6 +657,34 @@ public class PdfPageNumbersCmdline {
             if (systemExit(6))
                 return false;
         }
+         */
+
+        try {
+            printPageNumbers = getPrintLogicPosition(PRINTTYPE.PRINTPAGENUMBERS, strCommand);
+        }catch (Exception tme){
+            systemErr(tme.getMessage());
+            if (systemExit(6))
+                return false;
+        }
+
+        try {
+            printPrintTime = getPrintLogicPosition(PRINTTYPE.PRINTTIME, strCommand);
+            bCommandExtraPrintTimeOk = true;
+        } catch (Exception tme)
+        {
+            systemErr(tme.getMessage());
+            if (systemExit(6))
+                return false;
+        }
+        try {
+                printExtraText = getPrintLogicPosition(PRINTTYPE.PRINTEXTRATXT, strCommand);
+                bCommandExtraTextOk = true;
+            } catch (Exception tme)
+            {
+                systemErr(tme.getMessage());
+                if (systemExit(6))
+                    return false;
+            }
 
         checkTooManyTheSameKindCmdLineOptions();
         if (bNoPageNumbers && printPrintTime != null && printExtraText == null) {
@@ -655,7 +745,7 @@ public class PdfPageNumbersCmdline {
                 }
                 if (args.length == 3 )
                 {
-                    String strCommand = args[2];
+                    strCommand = args[2];
                     if (!checkStrCommandParameter(strCommand, args))
                         return false;
                     bCommandExtraPrintTimeOk = true;
@@ -722,12 +812,171 @@ public class PdfPageNumbersCmdline {
                     dateString = strSecondValue.substring(ind3+1).replaceAll("'", "");
             }
             ret = new PrintLogicPosition(type, position, dateString, cal,
-                    -1, -1, -1);
+                    -1, -1, -1, false);
         }
         else
         {
             throw new TooMuchValuesInTheSameVariable(cnstSeekVar +" does have a wrong end value!");
         }
+        return ret;
+    }
+
+    String getPrintExtraTextOfPrintType(PRINTTYPE printtype, int indLeft, int indCenter, int indRight)
+    {
+        String ret = "";
+        if (printtype != PRINTTYPE.PRINTEXTRATXT) {
+            ret = "text";
+        }
+        else
+        {
+            if (indLeft > -1)
+                ret = "left";
+            else
+            if (indCenter > -1)
+                ret = "center";
+            else
+            if (indRight > -1)
+                ret = "right";
+        }
+//            if printtype == PRINTTYPE.PRINTPAGENUMBERS
+        return ret;
+    }
+
+    private PrintLogicPosition getPrintLogicPosition(final  PRINTTYPE printtype,
+                                                     final String strCommand)
+            throws TooMuchValuesInTheSameVariable
+    {
+        PrintLogicPosition ret = null;
+        if (strCommand == null || strCommand.trim().isEmpty())
+            return ret;
+
+        String printExtraText = null;
+        Calendar printCalender = null;
+        PRINTPOSITION printposition = null;
+        String strText = null;
+        String strPreFixText = null;
+        boolean bValueAfterSearch = false;
+        String strSearch = PrintLogicPosition.getCmdLineStart(printtype);
+        if (strSearch == null || strSearch.trim().isEmpty())
+            return ret;
+        int ind = strCommand.indexOf(strSearch);
+        if (ind == -1)
+            return ret;
+
+        boolean bTimeTextOnly = false;
+        String strIndexOfSearch = strSearch +"left";
+        int indLeftSearch = strIndexOfSearch.length();
+        int indLeft = strCommand.indexOf(strIndexOfSearch);
+        strIndexOfSearch = strSearch +"center";
+        int indCenterSearch = strIndexOfSearch.length();
+        int indCenter = strCommand.indexOf(strIndexOfSearch);
+        strIndexOfSearch = strSearch +"right";
+        int indRightSearch = strIndexOfSearch.length();
+        int indRight = strCommand.indexOf(strIndexOfSearch);
+        strIndexOfSearch = strSearch +getPrintExtraTextOfPrintType(printtype,
+                indLeft, indCenter, indRight);
+        int indTextSearch = strIndexOfSearch.length();
+        int indText = strCommand.indexOf(strIndexOfSearch);
+        if (indLeft == -1 && indCenter == -1 && indRight == -1)
+            return ret;
+
+        int indSearchTextStart = -1;
+        if (indLeft > -1)
+        {
+            printposition = PRINTPOSITION.LEFT;
+            indSearchTextStart = indLeft +indLeftSearch;
+        }
+        else
+        if (indCenter > -1)
+        {
+            printposition = PRINTPOSITION.CENTER;
+            indSearchTextStart = indCenter +indCenterSearch;
+        }
+        else
+        if (indRight > -1)
+        {
+            printposition = PRINTPOSITION.RIGHT;
+            indSearchTextStart = indRight +indRightSearch;
+        }
+
+        if(printtype == PRINTTYPE.PRINTEXTRATXT)
+            bValueAfterSearch = true;
+
+        if (bValueAfterSearch && indSearchTextStart > -1)
+        {
+            strText = strCommand.substring(indSearchTextStart+2);
+            if (strText != null && !strText.trim().isEmpty())
+            {
+                int ind2 = strText.indexOf("'");
+                if (ind2 > -1)
+                    strText = strText.substring(0, ind2);
+                strText = strText.replaceAll("=", " ")
+                        .replaceAll("'","").trim();
+                strPreFixText = strText;
+            }
+        }
+        else
+        {
+            if (!bValueAfterSearch && indText > -1)
+            {
+                strText = strCommand.substring(indText+indTextSearch+2);
+                if (strText != null && !strText.trim().isEmpty())
+                {
+                    int ind2 = strText.indexOf("'");
+                    if (ind2 > -1)
+                        strText = strText.substring(0, ind2);
+                    strText = strText.replaceAll("=", " ")
+                            .replaceAll("'","").trim();
+                    strPreFixText = strText;
+                }
+            }
+        }
+
+        if (printtype == PRINTTYPE.PRINTPAGENUMBERS) {
+            iStartPage = getStartPageFrom(iStartPage, strCommand);
+            iEndPage = getEndPageFrom(iEndPage, strCommand);
+            iStartPageNumber = getStartPageNumberFrom(iStartPageNumber, strCommand);
+            //        private int iStartPageNumber = 1;
+         }
+        /*
+         else
+         if (printtype == PRINTTYPE.PRINTEXTRATXT)
+         {
+             ret = getExtraText(strCommand);
+             return ret;
+         }
+         */
+         else
+         if (printtype == PRINTTYPE.PRINTTIME)
+         {
+            // ret = getPrintTime(strCommand);
+            // return ret;
+             Calendar cal = Calendar.getInstance();
+             Locale current = new Locale("fi","FI");
+             SimpleDateFormat sdf=new SimpleDateFormat("dd.MM.YYYY HH:MM", current);
+             String strCalText = sdf.format(cal.getTime());
+             printCalender = cal;
+             int ind3 = strCommand.indexOf("timetextonly");
+             if (ind3 > -1)
+                 bTimeTextOnly = true;
+             /*
+             if (strPreFixText != null && !strPreFixText.trim().isEmpty())
+                 strPreFixText = strCalText +" " +strPreFixText;
+             else
+                 strPreFixText = strCalText;
+              */
+             /*
+             if (strText != null && !strText.trim().isEmpty())
+             {
+                 strText = strText +" " +strCalText;
+             }
+              */
+         }
+
+         ret = new PrintLogicPosition(printtype,
+                printposition, strPreFixText, printCalender,
+                 iStartPage, iEndPage, iStartPageNumber, bTimeTextOnly);
+
         return ret;
     }
 
@@ -804,7 +1053,7 @@ public class PdfPageNumbersCmdline {
 
             String srtValue = sp2.toString();
             ret = new PrintLogicPosition(type, position, srtValue, cal,
-                    -1,-1,-1);
+                    -1,-1,-1, false);
         }
         else
         {
